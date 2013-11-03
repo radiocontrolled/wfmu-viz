@@ -1,7 +1,7 @@
 
 //width and height of the canvas
 var w = 500;
-var h = 500;
+var h = 200;
 
 //make an SVG element and append it to the body
 var svg = d3.select("body")
@@ -58,9 +58,6 @@ function foo(data){
       				"font-size": "12px"
 			})
 			
-
-		console.log(key);
-		console.log(result[key]);
 	}
 		
 	
@@ -68,6 +65,3 @@ function foo(data){
 }
 
 requestRecentTracks();
-/* http://jsonviewer.stack.hu/#http://freemusicarchive.org/recent.jsonp
-
- */
