@@ -3,7 +3,7 @@
 var w =  document.body.clientWidth;
 var h =  w/2;
 var cx = 20;
-var r = 10;
+var r = 20;
 var row = document.body.clientWidth / (r/2);
 
 
@@ -65,7 +65,7 @@ function foo(data){
 		.data(data.aTracks)
 		.enter()
 		.append("circle").attr("r",r)
-		.style("fill","red")
+		.style("fill","#FF6600")
 		
 		
 	
@@ -76,7 +76,7 @@ function foo(data){
 		 .data(link.edges)
 		 .enter()
 		 .append("line")
-		 .style("stroke", "#ccc")
+		 .style("stroke", "#CC0000")
 		 .style("stroke-width", 1);
 		
 		        
@@ -86,7 +86,7 @@ function foo(data){
      	.links(link.edges)
      	.size([w, h])
         .linkDistance([200]) 
-        .charge([-150])       
+        .charge([-250])       
     	.start();
     	
     
