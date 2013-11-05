@@ -21,7 +21,7 @@ function foo(data){
 	
 	 var result = {};
         for(var i = 0; i < data.aTracks.length; i++){
-         	if(i==19){
+         	if(i==20){
          		data.aTracks.push("Parent");
          	}
            
@@ -85,8 +85,8 @@ function foo(data){
      	.nodes(data.aTracks)
      	.links(link.edges)
      	.size([w, h])
-        .linkDistance([200]) //distance between the nodes 
-        .charge([-150])     // repelling between the nodes       
+        .linkDistance([200]) 
+        .charge([-150])       
     	.start();
     	
     
