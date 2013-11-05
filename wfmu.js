@@ -2,9 +2,7 @@
 //width and height of the canvas
 var w =  document.body.clientWidth;
 var h =  w/2;
-var cx = 20;
 var r = 20;
-var row = document.body.clientWidth / (r/2);
 
 
 /*
@@ -16,43 +14,8 @@ function requestRecentTracks() {
 }
 
 
-
 function foo(data){
 	
-	 var result = {};
-        for(var i = 0; i < data.aTracks.length; i++){
-         	if(i==20){
-         		data.aTracks.push("Parent");
-         	}
-           
-        }
-        
-     var link = {
-			edges: [
-					{source: 0, target: 19},
-					{source: 1, target: 19},
-					{source: 2, target: 19},
-					{source: 3, target: 19},
-					{source: 4, target: 19},
-					{source: 5, target: 19},
-					{source: 6, target: 19},
-					{source: 7, target: 19},
-					{source: 8, target: 19},
-					{source: 9, target: 19},
-					{source: 10, target: 19},
-					{source: 11, target: 19},
-					{source: 12, target: 19},
-					{source: 13, target: 19},
-					{source: 14, target: 19},
-					{source: 15, target: 19},
-					{source: 16, target: 19},
-					{source: 17, target: 19},
-					{source: 18, target: 19},
-					{source: 19, target: 19}					
-				]
-			};
-
-
 	//make an SVG element and append it to the article
 	 var svg = d3.select("article")
 		.append("svg")
@@ -67,36 +30,21 @@ function foo(data){
 		.append("circle").attr("r",r)
 		.style("fill","#FF6600")
 		
-		
-	
-	
-		
-	// Create an SVG line for each edge
-	var edges = svg.selectAll("line")
-		 .data(link.edges)
-		 .enter()
-		 .append("line")
-		 .style("stroke", "#CC0000")
-		 .style("stroke-width", 1);
+
 		
 		        
 	 //initialize a force layout
 	 var force = d3.layout.force()
      	.nodes(data.aTracks)
-     	.links(link.edges)
+     //	.links(link.edges)
      	.size([w, h])
-        .linkDistance([200]) 
-        .charge([-250])       
+        .linkDistance([500]) 
+        .charge([-450])       
     	.start();
     	
     
     
     force.on("tick", function() {
-    	
-    	edges.attr("x1", function(d) { return d.source.x; })
-	      .attr("y1", function(d) { return d.source.y; })
-	      .attr("x2", function(d) { return d.target.x; })
-	      .attr("y2", function(d) { return d.target.y; });
 
 	  	nodes.attr("cx", function(d) { return d.x; })
 	      .attr("cy", function(d) { return d.y; })
