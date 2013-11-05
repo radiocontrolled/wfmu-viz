@@ -13,7 +13,6 @@ function requestRecentTracks() {
   d3.jsonp("http://freemusicarchive.org/recent.jsonp?callback=foo");
 }
 
-
 function foo(data){
 	
 	//make an SVG element and append it to the article
@@ -22,27 +21,37 @@ function foo(data){
 		.attr("width", w)
 		.attr("height", h);
 
-	
 	//add circles for every new track	
    	var nodes = svg.selectAll("circle")
 		.data(data.aTracks)
 		.enter()
 		.append("circle").attr("r",r)
 		.style("fill","#FF6600")
-		
 
-		
 		        
 	 //initialize a force layout
 	 var force = d3.layout.force()
      	.nodes(data.aTracks)
-     //	.links(link.edges)
      	.size([w, h])
-        .linkDistance([500]) 
-        .charge([-450])       
+        .linkDistance([400]) 
+        .charge([-400])       
     	.start();
-    	
     
+    // Create labels for nodes 
+	var labels = svg.selectAll("text")
+		.data(data.aTracks)
+		.enter()
+		.append("text")
+		.text(function(d){
+			return d.artist_name + " - " + "'" + d.track_title+"'";
+		})
+		.style({
+			"fill": "black",
+      		"font-family": "Trebuchet MS,​Lucida Grande,​Arial,​sans-serif",
+      		"font-size": "12px",
+      		"font-weight": "600"
+		})
+
     
     force.on("tick", function() {
 
@@ -50,9 +59,10 @@ function foo(data){
 	      .attr("cy", function(d) { return d.y; })
 	      .call(force.drag); //let the nodes be draggable.
 		
+		labels.attr("x", function(d){ return d.x; })
+	    	 .attr("y", function(d){return d.y});
 		});
- 
-  		
+
 }
 
 requestRecentTracks();
