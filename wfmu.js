@@ -1,6 +1,6 @@
 
 //width and height of the canvas
-var w =  document.body.clientWidth;
+var w =  document.body.clientWidth - 10;
 var h =  w/2;
 var r = 20;
 
@@ -27,14 +27,13 @@ function foo(data){
 		.enter()
 		.append("circle").attr("r",r)
 		.style("fill","#FF6600")
-
 		        
 	 //initialize a force layout
 	 var force = d3.layout.force()
      	.nodes(data.aTracks)
      	.size([w, h])
         .linkDistance([400]) 
-        .charge([-400])       
+        .charge([-430])       
     	.start();
     
     // Create labels for nodes 
