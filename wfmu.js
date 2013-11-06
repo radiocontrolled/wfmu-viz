@@ -1,10 +1,9 @@
 
 //width and height of the canvas
 var w =  document.body.clientWidth - 10;
-var h =  w/2.2;
+var h =  w/2;
 var r = 20;
 
-//
 /*
  * grab json file of recent tracks added to the FMA archive
  * see http://freemusicarchive.org/api/docs/ for more details
@@ -14,6 +13,8 @@ function requestRecentTracks() {
 }
 
 function foo(data){
+	
+	var color = d3.scale.category20();
 	
 	//make an SVG element and append it to the article
 	 var svg = d3.select("article")
@@ -28,7 +29,11 @@ function foo(data){
 		.append("svg:a")
 		.attr("xlink:href", function(d){return d.track_url;}) 
 		.append("circle").attr("r",r)
-		.style("fill","#FF6600")
+		/*colour of node is function of d.artist_id*/
+		.style("fill", function(d,i){
+			return color(Math.floor((d.artist_id)*400));
+		});
+		
 		        
 	 //initialize a force layout
 	 var force = d3.layout.force()
@@ -38,6 +43,7 @@ function foo(data){
         .charge([-430])       
     	.start();
     
+    
     // Create labels for nodes 
 	var labels = svg.selectAll("text")
 		.data(data.aTracks)
@@ -45,14 +51,17 @@ function foo(data){
 		.append("text")
 		.text(function(d){
 			return d.artist_name + " - " + "'" + d.track_title+"'";
+			
 		})
-		.style({
+		/* give labels the same look & feel of 'FMU music archive*/
+		.style({  
 			"fill": "black",
       		"font-family": "Trebuchet MS,​Lucida Grande,​Arial,​sans-serif",
       		"font-size": "12px",
       		"font-weight": "600"
 		})
-
+	
+	
     
     force.on("tick", function() {
 
