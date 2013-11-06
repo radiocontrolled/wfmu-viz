@@ -1,10 +1,10 @@
 
 //width and height of the canvas
 var w =  document.body.clientWidth - 10;
-var h =  w/2;
+var h =  w/2.2;
 var r = 20;
 
-
+//
 /*
  * grab json file of recent tracks added to the FMA archive
  * see http://freemusicarchive.org/api/docs/ for more details
@@ -25,6 +25,8 @@ function foo(data){
    	var nodes = svg.selectAll("circle")
 		.data(data.aTracks)
 		.enter()
+		.append("svg:a")
+		.attr("xlink:href", function(d){return d.track_url;}) 
 		.append("circle").attr("r",r)
 		.style("fill","#FF6600")
 		        
