@@ -1,7 +1,7 @@
 
 //width and height of the canvas
-var w =  document.body.clientWidth - 10;
-var h =  w/2;
+var w =  document.body.clientWidth;
+var h =  document.body.clientHeight;
 var r = 20;
 
 /*
@@ -19,9 +19,9 @@ function foo(data){
 	//make an SVG element and append it to the article
 	 var svg = d3.select("article")
 		.append("svg")
-		.attr("width", w)
-		.attr("height", h);
-
+	    .attr("viewBox", "0 0 " + w + " " + h )
+        .attr("preserveAspectRatio", "xMidYMid meet");
+	
 	//add circles for every new track	
    	var nodes = svg.selectAll("circle")
 		.data(data.aTracks)
